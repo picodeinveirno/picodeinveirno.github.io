@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home - Pico de Inveirno</title>
+    <link rel="icon" href="https://civicmirror.com/images/NationalIdentity/200/1738556602_1897215266.png" type="image/png">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Chewy&family=Heebo:wght@100..900&family=Jua&family=Kaushan+Script&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Styles -->
+    <style>
+        body {
+            font-family: 'Heebo', sans-serif;
+            background: linear-gradient(-45deg, #ffffff 0%, #ffffff 100%);
+            margin: 0;
+            padding: 20px;
+            padding-top: 70px
+        }
+    
+        p {
+            font-family: 'Arial', sans-serif;
+            color: rgb(0, 0, 0);
+        }
+        h1 {
+            font-family: 'Lobster', cursive;
+        }
+        h2 {
+            font-family: 'Heebo', sans-serif;
+            font-size: 60px;
+        }
+        .visible {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        nav.navbar {
+            width: 100vw;
+            left: 0;
+            right: 0;
+            background-color: rgb(75, 75, 75);
+            padding: 20px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+        nav.navbar ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            gap: 45px;
+            justify-content: right;
+        }
+        nav.navbar li {
+            display: inline;
+        }
+        nav.navbar a {
+            text-decoration: none;
+            color: rgb(255, 255, 255);
+            font-size: 15px;
+            font-weight: bold;
+            transition: color 0.6s, font-size 0.6s;
+            text-align: center;
+        }
+        nav.navbar a:hover {
+            font-weight: bold;
+            color: #c75a5a;
+            font-size: 20px;
+        }
+        /* Logo button styles */
+        .logo-btn {
+            position: fixed;
+            top: -2px;
+            left: 10px;
+            z-index: 2000;
+            background-color: transparent;
+            border: none;
+        }
+        .logo-btn h1 {
+            color: rgb(255, 255, 255);
+            margin-top: 15px;
+            user-select: none;
+        }
+    </style>
+
+    <!-- Main Variables Script -->
+    <script type="module">
+        import { season, year, school, educator, goverment_money, years_elapsed } from './variables.js';
+
+        const formattedGovernmentMoney = goverment_money.toLocaleString();
+        const formattedYearsElapsed = years_elapsed.toLocaleString();
+
+        console.log(`Season: ${season}`);
+        console.log(`Year: ${year}`);
+        console.log(`School: ${school}`);
+        console.log(`Prime Minister: ${educator}`);
+        console.log(`Government Money: ${formattedGovernmentMoney}`);
+        console.log(`Years Elapsed: ${formattedYearsElapsed}`);
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('status').innerHTML = `
+                <p><b>Season:</b> ${season}</p>
+                <p><b>Year:</b> ${year}</p>
+                <p><b>Prime Minister:</b> ${educator}</p>
+                <p><b>Government Money:</b> $${formattedGovernmentMoney}</p>
+                <p><b>Years Elapsed:</b> ${formattedYearsElapsed}</p>
+            `;
+        });
+    </script>
+
+    <!-- Navigation Function -->
+    <script>
+        function goToPage(page) {
+            window.location.href = page;
+        }
+    </script>
+</head>
+<body>
+    <!-- Logo Button -->
+    <button class="logo-btn" onclick="goToPage('index.html')">
+        <table border="0" style="border-collapse: separate; border-spacing: 15px 0;">
+            <tr>
+                <td>
+                    <img src="https://civicmirror.com/images/NationalIdentity/200/1738556602_1897215266.png" height="50" width="75" style="border-radius: 10%">
+                </td>
+                <td style="text-align: center;">
+                    <h1>Pico de Inveirno</h1>
+                </td>
+            </tr>
+        </table>
+    </button>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <ul style="margin-right: 30px">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="news.html">News</a></li>
+            <li><a href="constitution.html">Constitution</a></li>
+            <li><a href="legislation.html">Legislation</a></li>
+            <li><a href="government.html">Government</a></li>
+            <li><a href="history.html">History</a></li>
+        </ul>
+    </nav>
+
+        <h2 style="text-align: center;">News</h2>
+
+    <p>Nobody has created any news yet... Shall you be the first?</p>
+</body>
+</html>

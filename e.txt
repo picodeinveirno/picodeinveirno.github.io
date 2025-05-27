@@ -1,0 +1,39 @@
+Banner
+        <div class="visible" style="display: flex; align-items: center; margin-top: 20px;">
+            <div style="background-color: rgb(75, 75, 75); padding: -50px; border-radius: 10px; text-align: center; color: rgb(255, 255, 255); flex-grow: 1;">
+            <h2><i>Warmth comes when all of us come.</i></h2>
+            </div>
+        </div>
+
+        <!-- Country Stats -->
+        <div style="background-color: transparent; align-items: center; margin-top: 20px;">
+            <button 
+            id="toggleStatusButton" 
+            style="background: linear-gradient(0deg, #dadada 0%, #ffffff 100%); color: rgb(0, 0, 0); border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 16px; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
+            Show Country Stats
+            </button>
+            <p id="statusContainer" style="display: none; opacity: 0; transition: opacity 0.5s; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">
+            <span id="status"></span>
+            </p>
+        </div>
+
+        <script>
+            const toggleButton = document.getElementById('toggleStatusButton');
+            const statusContainer = document.getElementById('statusContainer');
+
+            toggleButton.addEventListener('click', () => {
+            if (statusContainer.style.display === 'none') {
+                statusContainer.style.display = 'block';
+                setTimeout(() => {
+                statusContainer.style.opacity = '1';
+                }, 10); 
+                toggleButton.textContent = 'Hide Country Stats';
+            } else {
+                statusContainer.style.opacity = '0';
+                setTimeout(() => {
+                statusContainer.style.display = 'none';
+                }, 500);
+                toggleButton.textContent = 'Show Country Stats';
+            }
+            });
+        </script>

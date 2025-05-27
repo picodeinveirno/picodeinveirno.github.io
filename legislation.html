@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home - Pico de Inveirno</title>
+    <link rel="icon" href="https://civicmirror.com/images/NationalIdentity/200/1738556602_1897215266.png" type="image/png">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Chewy&family=Heebo:wght@100..900&family=Jua&family=Kaushan+Script&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Styles -->
+    <style>
+        body {
+            font-family: 'Heebo', sans-serif;
+            background: linear-gradient(-45deg, #ffffff 0%, #ffffff 100%);
+            margin: 0;
+            padding: 20px;
+            padding-top: 70px
+        }
+    
+        p {
+            font-family: 'Arial', sans-serif;
+            color: rgb(0, 0, 0);
+        }
+        h1 {
+            font-family: 'Lobster', cursive;
+        }
+        h2 {
+            font-family: 'Heebo', sans-serif;
+            font-size: 60px;
+        }
+        h3 {
+            font-size: 30px;
+        }
+        .visible {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        nav.navbar {
+            width: 100vw;
+            left: 0;
+            right: 0;
+            background-color: rgb(75, 75, 75);
+            padding: 20px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+        nav.navbar ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            gap: 45px;
+            justify-content: right;
+        }
+        nav.navbar li {
+            display: inline;
+        }
+        nav.navbar a {
+            text-decoration: none;
+            color: rgb(255, 255, 255);
+            font-size: 15px;
+            font-weight: bold;
+            transition: color 0.6s, font-size 0.6s;
+            text-align: center;
+        }
+        nav.navbar a:hover {
+            font-weight: bold;
+            color: #c75a5a;
+            font-size: 20px;
+        }
+        /* Logo button styles */
+        .logo-btn {
+            position: fixed;
+            top: -2px;
+            left: 10px;
+            z-index: 2000;
+            background-color: transparent;
+            border: none;
+        }
+        .logo-btn h1 {
+            color: rgb(255, 255, 255);
+            margin-top: 15px;
+            user-select: none;
+        }
+    </style>
+
+    <!-- Main Variables Script -->
+    <script type="module">
+        import { season, year, school, educator, goverment_money, years_elapsed } from './variables.js';
+
+        const formattedGovernmentMoney = goverment_money.toLocaleString();
+        const formattedYearsElapsed = years_elapsed.toLocaleString();
+
+        console.log(`Season: ${season}`);
+        console.log(`Year: ${year}`);
+        console.log(`School: ${school}`);
+        console.log(`Prime Minister: ${educator}`);
+        console.log(`Government Money: ${formattedGovernmentMoney}`);
+        console.log(`Years Elapsed: ${formattedYearsElapsed}`);
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('status').innerHTML = `
+                <p><b>Season:</b> ${season}</p>
+                <p><b>Year:</b> ${year}</p>
+                <p><b>Prime Minister:</b> ${educator}</p>
+                <p><b>Government Money:</b> $${formattedGovernmentMoney}</p>
+                <p><b>Years Elapsed:</b> ${formattedYearsElapsed}</p>
+            `;
+        });
+    </script>
+
+    <!-- Navigation Function -->
+    <script>
+        function goToPage(page) {
+            window.location.href = page;
+        }
+    </script>
+</head>
+<body>
+    <!-- Logo Button -->
+    <button class="logo-btn" onclick="goToPage('index.html')">
+        <table border="0" style="border-collapse: separate; border-spacing: 15px 0;">
+            <tr>
+                <td>
+                    <img src="https://civicmirror.com/images/NationalIdentity/200/1738556602_1897215266.png" height="50" width="75" style="border-radius: 10%">
+                </td>
+                <td style="text-align: center;">
+                    <h1>Pico de Inveirno</h1>
+                </td>
+            </tr>
+        </table>
+    </button>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <ul style="margin-right: 30px">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="news.html">News</a></li>
+            <li><a href="constitution.html">Constitution</a></li>
+            <li><a href="legislation.html">Legislation</a></li>
+            <li><a href="government.html">Government</a></li>
+            <li><a href="history.html">History</a></li>
+        </ul>
+    </nav>
+
+        <h2 style="text-align: center;">Legislation</h2>
+
+    <div style="max-width: 1200px; margin: 40px auto 0 auto;">
+        <div style="display: flex; gap: 24px; flex-wrap: wrap;">
+            <!-- Dropdown 1: National Laws -->
+            <div class="dropdown" style="flex: 1 1 300px; min-width: 280px;">
+                <button class="dropdown-btn active" onclick="toggleDropdown('nl')"><b>National Laws</b></button>
+                <div id="nl-dropdown" class="dropdown-content open">
+                    <div class="dropdown-inner">
+                        <span id="nl-text">Loading national laws...</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Dropdown 2: Proposed Laws -->
+            <div class="dropdown" style="flex: 1 1 300px; min-width: 280px;">
+                <button class="dropdown-btn" onclick="toggleDropdown('pl')"><b>Proposed Laws</b></button>
+                <div id="pl-dropdown" class="dropdown-content open">
+                    <div class="dropdown-inner">
+                        <span id="pl-text">Loading proposed laws...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .dropdown {
+            margin-bottom: 24px;
+        }
+        .dropdown-btn {
+            width: 100%;
+            background: rgba(68, 68, 68); /* More transparent */
+            color: #fff;
+            font-size: 1.3em;
+            font-family: 'Heebo', sans-serif;
+            padding: 18px 24px;
+            border: none;
+            border-radius: 12px 12px 0 0;
+            cursor: pointer;
+            text-align: left;
+            transition: background 0.4s;
+            outline: none;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            position: sticky; /* Always visible */
+            top: 0;
+            z-index: 10;
+            opacity: 0.85; /* Slightly more transparent */
+        }
+        .dropdown-btn:hover{
+            background: rgba(199, 90, 90);
+            opacity: 1;
+        }
+        .dropdown-content {
+            max-height: 0;
+            overflow: hidden;
+            background: #fff;
+            border-radius: 0 0 16px 16px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            transition: max-height 0.5s cubic-bezier(.4,0,.2,1);
+            padding: 0 32px;
+        }
+        .dropdown-content.open {
+            max-height: 450px;
+            transition: max-height 0.5s cubic-bezier(.4,0,.2,1);
+            padding-bottom: 32px;
+            overflow: visible;
+        }
+        .dropdown-inner {
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: opacity 0.5s 0.1s, transform 0.5s 0.1s;
+            padding-top: 24px;
+            max-height: 450px;
+            overflow-y: scroll;
+        }
+        .dropdown-content.open .dropdown-inner {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.5s 0.2s, transform 0.5s 0.2s;
+        }
+        /* Custom scrollbar styles for transparency and always visible */
+        .dropdown-inner {
+            scrollbar-width: thin;
+            scrollbar-color: rgba(120,120,120,0.25) rgba(0,0,0,0.05);
+        }
+        .dropdown-inner::-webkit-scrollbar {
+            width: 8px;
+            background: rgba(0,0,0,0.05);
+        }
+        .dropdown-inner::-webkit-scrollbar-thumb {
+            background: rgba(120,120,120,0.25);
+            border-radius: 6px;
+            min-height: 20px;
+        }
+        .dropdown-inner::-webkit-scrollbar-thumb:hover {
+            background: rgba(120,120,120,0.35);
+        }
+        .dropdown-inner::-webkit-scrollbar-corner {
+            background: transparent;
+        }
+        @media (max-width: 800px) {
+            .dropdown {
+                min-width: 100% !important;
+                flex-basis: 100% !important;
+            }
+            .dropdown-btn {
+                font-size: 1em;
+            }
+        }
+    </style>
+
+    <script>
+        function toggleDropdown(type) {
+            const dropdown = document.getElementById(type + '-dropdown');
+            const btn = document.querySelector('.dropdown-btn[onclick*="' + type + '"]');
+            const isOpen = dropdown.classList.contains('open');
+            if (!isOpen) {
+                dropdown.classList.add('open');
+                btn.classList.add('active');
+            } else {
+                dropdown.classList.remove('open');
+                btn.classList.remove('active');
+            }
+        }
+
+        // Optionally, close all on click outside
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.dropdown')) {
+                document.getElementById('nl-dropdown').classList.remove('open');
+                document.getElementById('pl-dropdown').classList.remove('open');
+                document.querySelectorAll('.dropdown-btn').forEach(btn => btn.classList.remove('active'));
+            }
+        });
+    </script>
+
+    <script>
+        fetch('national-laws.txt')
+            .then(response => response.text())
+            .then(text => {
+                text = text.replace(/\*\*(.+?)\*\*/g, '<b>$1</b>');
+                text = text.replace(/\*(.+?)\*/g, '<i>$1</i>');
+                text = text.replace(/# (.+)/g, '<h3>$1</h3>');
+                text = text.replace(/--+/g, '<hr>');
+                const paragraphs = text.split(/\n\s*\n/).map(paragraph => {
+                    let html = paragraph.replace(/\n/g, '<br>');
+                    if (html.startsWith('<h3>')) return html;
+                    return `<p>${html}</p>`;
+                });
+                text = paragraphs.join('');
+                document.getElementById('nl-text').innerHTML = text;
+            })
+            .catch(() => {
+                document.getElementById('nl-text').textContent = 'Unable to load national laws.';
+            });
+    </script>
+    <script>
+        fetch('proposed-laws.txt')
+            .then(response => response.text())
+            .then(text => {
+                text = text.replace(/\*\*(.+?)\*\*/g, '<b>$1</b>');
+                text = text.replace(/\*(.+?)\*/g, '<i>$1</i>');
+                text = text.replace(/# (.+)/g, '<h3>$1</h3>');
+                text = text.replace(/--+/g, '<hr>');
+                const paragraphs = text.split(/\n\s*\n/).map(paragraph => {
+                    let html = paragraph.replace(/\n/g, '<br>');
+                    if (html.startsWith('<h3>')) return html;
+                    return `<p>${html}</p>`;
+                });
+                text = paragraphs.join('');
+                document.getElementById('pl-text').innerHTML = text;
+            })
+            .catch(() => {
+                document.getElementById('pl-text').textContent = 'Unable to load proposed laws.';
+            });
+    </script>
+</body>
+</html>
